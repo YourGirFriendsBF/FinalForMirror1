@@ -136,6 +136,22 @@ AS_MEDIA_USERS = set()
 EXTENSION_FILTER = set()
 LEECH_LOG = set()
 MIRROR_LOGS = set()
+LINK_LOGS = set()
+LEECH_LOG_ALT = set()
+try:
+    aid = getConfig('LINK_LOGS')
+    aid = aid.split(' ')
+    for _id in aid:
+        LINK_LOGS.add(int(_id))
+except:
+    pass
+try:
+    aid = getConfig('LEECH_LOG_ALT')
+    aid = aid.split(' ')
+    for _id in aid:
+        LEECH_LOG_ALT.add(int(_id))
+except:
+    pass
 try:
     aid = getConfig('LEECH_LOG')
     aid = aid.split(' ')
@@ -583,7 +599,11 @@ try:
     SEARCH_PLUGINS = jsnloads(SEARCH_PLUGINS)
 except:
     SEARCH_PLUGINS = None
-
+try:
+    EMOJI_THEME = getConfig('EMOJI_THEME')
+    EMOJI_THEME = EMOJI_THEME.lower() == 'true'
+except:
+    EMOJI_THEME = False
 updater = tgUpdater(token=BOT_TOKEN, request_kwargs={'read_timeout': 20, 'connect_timeout': 15})
 bot = updater.bot
 dispatcher = updater.dispatcher
