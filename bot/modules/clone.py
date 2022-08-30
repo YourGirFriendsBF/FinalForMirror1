@@ -81,14 +81,14 @@ def _clone(message, bot, multi=0):
     is_appdrive = is_appdrive_link(link)
     if is_gdtot:
         try:
-            msg = sendMessage(f"<b>Please Wait While I'm Processing:</b> <code>{link}</code>", bot, message)
+            msg = sendMessage(f"<b>Please Wait While I'm Processing:</b>\n\n <code>{link}</code>", bot, message)
             link = gdtot(link)
             deleteMessage(bot, msg)
         except DirectDownloadLinkException as e:
             deleteMessage(bot, msg)
             return sendMessage(str(e), bot, message)
     if is_appdrive:
-        msg = sendMessage(f"<b>Please Wait While I'm Processing:</b> <code>{link}</code>", bot, message)
+        msg = sendMessage(f"<b>Please Wait While I'm Processing:</b>\n\n <code>{link}</code>", bot, message)
         try:
             apdict = appdrive(link)
             link = apdict.get('gdrive_link')
@@ -121,7 +121,7 @@ def _clone(message, bot, multi=0):
             sleep(4)
             Thread(target=_clone, args=(nextmsg, bot, multi)).start()
         if files <= 20:
-            msg = sendMessage(f"<b>Almost there, I'm  Cloning:</b> <code>{link}</code>", bot, message)
+            msg = sendMessage(f"<b>Almost there, I'm  Cloning:</b>\n\n <code>{link}</code>", bot, message)
             result, button = gd.clone(link)
             deleteMessage(bot, msg)
         else:
@@ -150,7 +150,7 @@ def _clone(message, bot, multi=0):
         else:
             msg = sendMarkup(result + cc, bot, message, button)
             LOGGER.info(f'Cloning Done: {name}')
-            Thread(target=auto_delete_message, args=(bot, message, msg)).start()
+            Thread(target=auto_delete_upload_message, args=(bot, message, msg)).start()
         if is_gdtot:
             gd.deletefile(link)
         elif is_appdrive:
