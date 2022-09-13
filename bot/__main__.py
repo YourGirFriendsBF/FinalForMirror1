@@ -44,7 +44,7 @@ def stats(update, context):
     mem_t = get_readable_file_size(memory.total)
     mem_a = get_readable_file_size(memory.available)
     mem_u = get_readable_file_size(memory.used)
-    stats = f'<b><i><u>NSFW Mirror Bot Statistics</u></i></b>\n\n'\
+    stats = f'<b><i><u>This Bot is Not Yours !!!!!</u></i></b>\n\n'\
             f'<b>Updated:</b> <code>{last_commit}</code>\n'\
             f'<b>I am Working For:</b> <code>{currentTime}</code>\n'\
             f'<b>Total Disk:</b> <code>{total}</code> [{disk}% In use]\n'\
@@ -64,7 +64,7 @@ def start(update, context):
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-Welcome | Dhruv Mirror Bot is ready for you
+Kyu bakchodi kr rahe ho? Apna kaam karo aur jao
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
