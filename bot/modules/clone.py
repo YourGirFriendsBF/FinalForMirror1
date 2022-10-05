@@ -53,30 +53,30 @@ def _clone(message, bot, multi=0):
             tag = f"@{reply_to.from_user.username}"
         else:
             tag = reply_to.from_user.mention_html(reply_to.from_user.first_name)
-    mesg = message.text.split('\n')
-    message_args = mesg[0].split(' ', maxsplit=1)
-    user_id = message.from_user.id
-    tag = f"@{message.from_user.username}"
-    if EMOJI_THEME is True:
-        slmsg = f"Added by: {tag} \n👥 User ID: <code>{user_id}</code>\n\n"
-    else:
-        slmsg = f"Added by: {tag} \nUser ID: <code>{user_id}</code>\n\n"
-    if LINK_LOGS:
-            try:
-                f"<code>{message_args[1]}</code>"
-                for link_log in LINK_LOGS:
-                    bot.sendMessage(link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
-            except IndexError:
-                pass
-            if reply_to is not None:
-                try:
-                    reply_text = reply_to.text
-                    if is_url(reply_text):
-                        source_link = f"<code>{reply_text.strip()}</code>"
-                        for link_log in LINK_LOGS:
-                            bot.sendMessage(chat_id=link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
-                except TypeError:
-                    pass  
+#     mesg = message.text.split('\n')
+#     message_args = mesg[0].split(' ', maxsplit=1)
+#     user_id = message.from_user.id
+#     tag = f"@{message.from_user.username}"
+#     if EMOJI_THEME is True:
+#         slmsg = f"Added by: {tag} \n👥 User ID: <code>{user_id}</code>\n\n"
+#     else:
+#         slmsg = f"Added by: {tag} \nUser ID: <code>{user_id}</code>\n\n"
+#     if LINK_LOGS:
+#             try:
+#                 f"<code>{message_args[1]}</code>"
+#                 for link_log in LINK_LOGS:
+#                     bot.sendMessage(link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
+#             except IndexError:
+#                 pass
+#             if reply_to is not None:
+#                 try:
+#                     reply_text = reply_to.text
+#                     if is_url(reply_text):
+#                         source_link = f"<code>{reply_text.strip()}</code>"
+#                         for link_log in LINK_LOGS:
+#                             bot.sendMessage(chat_id=link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
+#                 except TypeError:
+#                     pass  
     is_gdtot = is_gdtot_link(link)
     is_appdrive = is_appdrive_link(link)
     if is_gdtot:
