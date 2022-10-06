@@ -52,7 +52,7 @@ def stats(update, context):
             f'<b>Total Uptime:</b> <code>{sent}</code> | <b>T-Dn:</b> <code>{recv}</code>\n'\
             f'<b>CPU Usage:</b> <code>{cpuUsage}</code>% | <b>RAM Usage:</b> <code>{mem_p}%</code>\n'
     reply_message = sendMessage(stats, context.bot, update.message)
-    Thread(target=auto_delete_message, args=(context.bot, update.message, reply_message)).start()
+    
 
 
 def start(update, context):
