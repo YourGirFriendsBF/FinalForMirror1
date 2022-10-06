@@ -202,18 +202,22 @@ class MirrorListener:
         slmsg = f"Added by: {self.tag} \n👥 User ID: <code>{self.user_id}</code>\n\n"
         if LINK_LOGS:
             try:
-                source_link = f"<code>{message_args[1]}</code>"
+                upper = f"‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒\n"
+                source_link = f"<code>{message_args[1]}</code>\n"
+                lower = f"‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒\n"
                 for link_log in LINK_LOGS:
-                    bot.sendMessage(link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
+                    bot.sendMessage(link_log, text=slmsg + upper + source_link + lower, parse_mode=ParseMode.HTML )
             except IndexError:
                 pass
             if reply_to is not None:
                 try:
                     reply_text = reply_to.text
                     if is_url(reply_text):
-                        source_link = f"<code>{reply_text.strip()}</code>"
+                        upper = f"‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒\n"
+                        source_link = f"<code>{reply_text.strip()}</code>\n"
+                        lower = f"‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒\n"
                         for link_log in LINK_LOGS:
-                            bot.sendMessage(chat_id=link_log, text=slmsg + source_link, parse_mode=ParseMode.HTML )
+                            bot.sendMessage(chat_id=link_log, text=slmsg + upper + source_link + lower, parse_mode=ParseMode.HTML )
                 except TypeError:
                     pass
         if not self.isPrivate and INCOMPLETE_TASK_NOTIFIER and DB_URI is not None:
